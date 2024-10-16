@@ -1,0 +1,20 @@
+@for(product of products;track product.sku){
+<div class="product-container">
+  <div class="product-content-left">
+    <img src="{{ product.imageUrl }}" class="product-img" />
+  </div>
+  <div class="product-content-middle">
+    <div class="header">
+      <h5>{{ product.name }}</h5>
+      <p class="subtitle">{{ product.sku }}</p>
+    </div>
+    <p class="categories">
+      @for(c of product.department;track $index;let isLast = $last){
+      <a href="#">{{ c }}</a> @if(!isLast){
+      {{ " > " }}
+      } }
+    </p>
+  </div>
+  <div class="product-content-right">{{ product?.price | currency }}</div>
+</div>
+}
