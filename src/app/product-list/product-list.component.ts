@@ -5,11 +5,12 @@ import { State } from '../states/product.reducer';
 import { ProductActions } from '../states/product.actions';
 import { CurrencyPipe } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, MatPaginatorModule],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css',
 })
