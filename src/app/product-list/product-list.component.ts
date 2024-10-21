@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { Product } from '../models/product.model';
 import { Store } from '@ngrx/store';
-import { State } from '../states/product.reducer';
-import { ProductActions } from '../states/product.actions';
+import { State } from '../states/product/product.reducer';
+import { ProductActions } from '../states/product/product.actions';
 import { CurrencyPipe } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-product-list',
@@ -27,5 +27,9 @@ export class ProductListComponent {
 
     // dispatch to get product list
     this.store.dispatch(ProductActions.loadProducts());
+  }
+
+  notify(event: PageEvent): void {
+    console.log(event.pageIndex, event.pageSize);
   }
 }

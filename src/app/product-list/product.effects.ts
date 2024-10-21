@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Product } from '../models/product.model';
-import { ProductActions } from '../states/product.actions';
+import { ProductActions } from '../states/product/product.actions';
 import { catchError, exhaustMap, map, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
