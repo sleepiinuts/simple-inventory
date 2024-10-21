@@ -13,6 +13,7 @@ import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { productFeatureKey, reducer } from './states/product.reducer';
 import { ProductEffects } from './product-list/product.effects';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -20,6 +21,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideClientHydration(),
     provideAnimationsAsync(),
+    provideHttpClient(withFetch()),
     provideStore(),
     provideState({ name: productFeatureKey, reducer: reducer }),
     provideEffects(ProductEffects),

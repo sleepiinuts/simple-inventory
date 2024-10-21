@@ -9,7 +9,8 @@
       <p class="subtitle">{{ product.sku }}</p>
     </div>
     <p class="categories">
-      @for(c of product.department;track $index;let isLast = $last){
+      @for(c of product?.departmentJson?.department;track $index;let isLast =
+      $last){
       <a href="#">{{ c }}</a> @if(!isLast){
       {{ " > " }}
       } }
