@@ -44,8 +44,6 @@ export class ProductListComponent implements OnInit {
   ngOnInit(): void {}
 
   onPageChange(event: PageEvent): void {
-    console.log(event.pageIndex, event.pageSize);
-
     this.page = {
       ...this.page,
       pageIndex: event.pageIndex,
