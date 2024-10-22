@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { Product } from '../models/product.model';
+import { PagingProduct } from '../models/product.model';
 import { ProductActions } from '../states/product/product.actions';
 import { catchError, exhaustMap, map, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -17,12 +17,14 @@ export class ProductEffects {
   getAll = createEffect(() =>
     this.actions$.pipe(
       ofType(ProductActions.loadProducts),
-      exhaustMap(() =>
+      exhaustMap((props) =>
         this.http
-          .get<Product[]>(`${ProductEffects.url}${ProductEffects.product}`)
+          .get<PagingProduct>(
+            `${ProductEffects.url}${ProductEffects.product}?pageIndex=${props.data.pageIndex}&pageSize=${props.data.pageSize}`
+          )
           .pipe(
-            map((products) =>
-              ProductActions.loadProductsSuccess({ data: products })
+            map((pagingProduct) =>
+              ProductActions.loadProductsSuccess({ data: pagingProduct })
             ),
             catchError((err) =>
               of(ProductActions.loadProductsFailure({ error: err }))
